@@ -17,7 +17,22 @@ setup(
         'pytz>=2023.3',
         'tzdata>=2023.3'
     ],
+    entry_points={
+        'console_scripts': [
+            'multisheet_aggregator=ddm_flow_scripts.multisheet_fov_aggregator:main',
+            'csv_organizer=ddm_flow_scripts.csv_organizer:main',
+            'plotter=ddm_flow_scripts.plotter:main'
+        ],
+    },
 
     author="Naz Ebrahimi",
-    description="A toolset for processing, organizing, and visualizing data for individual FoVs from DDm analysis."
+    description="A toolset for processing, organizing, and visualizing data for individual FoVs from DDm analysis.",
+    long_description=open('README.md').read(),
+    url="https://github.com/NEbrahimi/ddm-flow",
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
 )
+
