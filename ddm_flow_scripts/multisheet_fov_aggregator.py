@@ -30,7 +30,7 @@ def save_aggregated_data(df, output_path):
     df.to_csv(output_path, index=False)
 
 
-def aggregate_multisheets(parent_dir):
+def aggregate_multisheets(parent_dir, output_name_prefix):
     """Aggregate data from multiple sheets in Excel files in the specified directory."""
     for subdir, dirs, files in os.walk(parent_dir):
         if "OutputsDDM" in dirs:
@@ -43,7 +43,7 @@ def aggregate_multisheets(parent_dir):
 
                 base_name = os.path.splitext(os.path.basename(file_path))[0]
                 base_name = base_name.replace("DDMOutputsSummary", "").replace("-00_", "")
-                output_csv = os.path.join(ddm_dir, "Filter-FoV-Average-test-2" + base_name + ".csv")
+                output_csv = os.path.join(ddm_dir, output_name_prefix + base_name + ".csv")
 
                 save_aggregated_data(df, output_csv)
 
@@ -54,11 +54,13 @@ def main():
     """Entry point of the script."""
     parser = argparse.ArgumentParser(description="Aggregate multiple Excel sheets from a directory.")
     parser.add_argument('directory', type=str, help='The parent directory containing Excel files to process')
+    parser.add_argument('-o', '--output', type=str, default="Filter-FoV-Average",
+                        help='Prefix for the output CSV file name')
 
     args = parser.parse_args()
 
     if os.path.exists(args.directory) and os.path.isdir(args.directory):
-        aggregate_multisheets(args.directory)
+        aggregate_multisheets(args.directory, args.output)
     else:
         print(f"Error: Directory {args.directory} does not exist or is not a directory.")
 
