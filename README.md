@@ -8,9 +8,9 @@
 
 You can easily install `ddm-flow` from PyPi:
 
-[```]
+```
 pip install ddm-flow==0.1.1
-[```]
+```
 
 ### From Source
 
