@@ -8,7 +8,7 @@
 
 You can easily install `ddm-flow` from PyPi:
 
-\```
+```bash
 pip install ddm-flow==0.1.1
 \```
 
